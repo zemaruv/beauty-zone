@@ -8,6 +8,9 @@
 </head>
 <body>
     <div class="background_header">
+         <svg class="wave_bottom" viewBox="0 0 1440 150" preserveAspectRatio="none">
+        <path d="M0,50 C360,150 1080,-50 1440,50 L1440,150 L0,150 Z" fill="#ffffff"/>
+    </svg>
         <header>
             <div class="background_nav">
                 <div class="container">
@@ -70,59 +73,73 @@
         </div>
         <!-- Секция Чому ми -->
         <div class="background_why">
-            <div class="container">
-                <section class="section_why" id="section2">
-                    <h2>Чому люди<br> <span>обирають нас</span></h2>
-                    <div class="section_why_articles">
-                        <article class="section_why_items">
-                            <svg class="icon_why_items"><use href="./images/sprite.svg#game-icon"></use></svg>
-                            <p>Всі наші косметологи мають вищу медичну освіту та стаж роботи від 5 років</p>
-                        </article>
-                        <article class="section_why_items">
-                            <svg class="icon_why_items"><use href="./images/sprite.svg#clinic-icon"></use></svg>
-                            <p>Використовуємо тільки професійне обладнання та косметику, перевірену часом</p>
-                        </article>
-                        <article class="section_why_items">
-                            <svg class="icon_why_items"><use href="./images/sprite.svg#crown-icon"></use></svg>
-                            <p>Наша мета - підкреслити переваги та приховати недоліки, а не переробити</p>
-                        </article>
-                    </div>
-                </section>
+            <svg class="wave_top" viewBox="0 0 1440 150" preserveAspectRatio="none">
+                <path d="M0,50 C360,150 1080,-50 1440,50 L1440,0 L0,0 Z" fill="#ffffff"/>
+            </svg>
+    <div class="container">
+        <section class="section_why" id="section2">
+            <h2>Чому люди<br> <span>обирають нас</span></h2>
+            <div class="section_why_articles">
+                <article class="section_why_items">
+                    <svg class="icon_why_items"><use href="./images/sprite.svg#game-icon"></use></svg>
+                    <p>Всі наші косметологи мають вищу медичну освіту та стаж роботи від 5 років</p>
+                </article>
+                <article class="section_why_items">
+                    <svg class="icon_why_items"><use href="./images/sprite.svg#clinic-icon"></use></svg>
+                    <p>Використовуємо тільки професійне обладнання та косметику, перевірену часом</p>
+                </article>
+                <article class="section_why_items">
+                    <svg class="icon_why_items"><use href="./images/sprite.svg#crown-icon"></use></svg>
+                    <p>Наша мета - підкреслити переваги та приховати недоліки, а не переробити</p>
+                </article>
             </div>
-            <!-- Секция Процедури -->
-            <div class="container">
-                <section class="section_procedure" id="section3">
-                    <h2 class="title_our_procedure">Наші <span>процедури</span></h2>
-                    <div class="procedure_articles">
-                        <button class="carousel_button" type="button">
-                            <svg class="carousel_arrow" width="44" height="44" style="transform: rotate(180deg);"><use href="./images/sprite.svg#arrow-icon"></use></svg>
-                        </button>
-                        <!-- Карточки процедур -->
-                        <article class="articles_items">
-                            <img class="article_image" src="images/masks_img.png" alt="mask_for_face">
-                            <div class="article_text">Маски для обличчя</div>
-                        </article>
-                        <article class="articles_items">
-                            <img class="article_image" src="images/inaction_img.png" alt="inaction_for_face">
-                            <div class="article_text">Ін'єкції</div>
-                        </article>
-                        <article class="articles_items">
-                            <img class="article_image" src="images/piling_img.png" alt="piling_for_face">
-                            <div class="article_text">Пілінги</div>
-                        </article>
+        </section>
 
-                        <button class="carousel_button" type="button">
-                            <svg class="carousel_arrow" width="44" height="44"><use href="./images/sprite.svg#arrow-icon"></use></svg>
-                        </button>
-                    </div>
-                    <div class="procedure_dots">
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                        <div class="dot"></div>
-                    </div>
-                </section>
+      <section class="section_procedure" id="section3">
+    <h2 class="title_our_procedure">Наші <span>процедури</span></h2>
+    <div class="procedure_wrapper">
+        <div class="carousel_button prev">
+            <svg class="carousel_arrow" width="44" height="44" style="transform: rotate(180deg);">
+                <use href="./images/sprite.svg#arrow-icon"></use>
+            </svg>
+        </div>
+
+        <div class="procedure_track_wrapper">
+            <div class="procedure_track">
+                <article class="articles_items">
+                    <img class="article_image" src="images/masks_img.png" alt="mask_for_face">
+                    <div class="article_text">Маски для обличчя</div>
+                </article>
+                <article class="articles_items">
+                    <img class="article_image" src="images/inaction_img.png" alt="inaction_for_face">
+                    <div class="article_text">Ін'єкції</div>
+                </article>
+                <article class="articles_items">
+                    <img class="article_image" src="images/piling_img.png" alt="piling_for_face">
+                    <div class="article_text">Пілінги</div>
+                </article>
             </div>
         </div>
+
+        <div class="carousel_button next">
+            <svg class="carousel_arrow" width="44" height="44">
+                <use href="./images/sprite.svg#arrow-icon"></use>
+            </svg>
+        </div>
+    </div>
+
+    <div class="procedure_dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</section>
+
+
+
+    </div>
+</div>
+
         <!-- Секция Контакты -->
         <div class="container">
             <section class="section_contacts" id="section4">
@@ -130,53 +147,64 @@
                 <div class="section_contacts_items">
                     <iframe class="map" src="https://www.google.com/maps/embed?..." allowfullscreen="" loading="lazy"></iframe>
 
-                    <div class="form_contacts">
-                        <p class="parag_form_contacts">Запишіться <span>безкоштовно</span> та отримайте подарунок</p>
-                        <form>
-                            <input class="form_input" type="text" placeholder="Ваше ім'я та прізвище" required>
-                            <input class="form_input" type="tel" placeholder="Ваш номер телефону" required>
-                            <input class="form_input" type="email" placeholder="Ваша електронна пошта" required>
-                            <button type="submit" class="button_form_contacts">Записатись безкоштовно</button>
-                        </form>
-                    </div>
+     <div class="form_contacts">
+    <p class="parag_form_contacts">Запишіться <span>безкоштовно</span> та отримайте подарунок</p>
+    <form id="contactForm">
+        <input class="form_input" type="text" id="name" placeholder="Ваше ім'я та прізвище" required>
+        <input class="form_input" type="tel" id="phone" placeholder="Ваш номер телефону" required>
+        <input class="form_input" type="email" id="email" placeholder="Ваша електронна пошта" required>
+        <button type="submit" class="button_form_contacts">Записатися безкоштовно</button>
+    </form>
+    <div id="successMessage" class="success_message">Дані успішно надіслані!</div>
+</div>
+
                 </div>
             </section>
         </div>
     </main>
 <footer class="footer">
-            <div class="container">
-                <div class="footer_container">
-                    <nav class="nav_footer"> 
-                        <a class="footer_logo" href="#"><img src="images/logo.svg" alt="Логотип Beauty Zone"></a> 
-                        <ul class="footer_menu">
-                            <li><a class="link_nav_footer" href="#section1" target="_blank">Про нас</a></li>
-                            <li><a class="link_nav_footer" href="#section2" target="_blank">Чому ми</a></li>
-                            <li><a class="link_nav_footer" href="#section3" target="_blank">Наші процедури</a></li>
-                            <li><a class="link_nav_footer" href="#section4" target="_blank">Контакти</a></li>
-                        </ul>
-                    </nav>
-                    <address class="address_footer">
-                        <div class="address_items">
-                            <ul class="ul_address">
-                                <li><a class="link_nav_footer" href="tel:+380960000007">+ 38 (096) 000 00 07</a></li>
-                                <li><a class="link_nav_footer" href="mailto:beautyzone@gmail.com">beautyzone@gmail.com</a></li>
-                                <li><a class="link_nav_footer" href="https://maps.app.goo.gl/86zht8n7ZZGZGPXu9" target="_blank">Україна, м. Київ,<br> вул. Тараса Шевченка 5</a></li>
-                            </ul>
-                            <div class="adress_icons">
-                                <a href="tel:+380960000007" target="_blank"><svg class="icon_footer" width="42px" height="42px"><use href="images/sprite.svg#telephone-icon"></use></svg></a>
-                                <a href="https://www.facebook.com/yourusername" target="_blank"><svg class="icon_footer" width="42px" height="42px"><use href="images/sprite.svg#facebook-icon"></use></svg></a>
-                                <a href="https://www.instagram.com/yourusername" target="_blank"><svg class="icon_footer" width="42px" height="42px"><use href="images/sprite.svg#instagram-icon"></use></svg></a>
-                            </div>    
-                        </div>
-                        <div class="footer_info">
-                        <a class="info_item" href="politics_of_confident.html" target="_blank">Політика конфіденційності</a>
-                        <p class="info_safety">© 2024 Дані захищені</p>
-                        </div>
-                    </address>
-                </div> 
+    <div class="container footer_inner">
+        <!-- Логотип -->
+        <a class="footer_logo" href="#"><img src="images/logo.svg" alt="Логотип Beauty Zone"></a>
+
+        <!-- Меню футера колонкой -->
+        <ul class="footer_menu">
+            <li><a class="link_nav_footer" href="#section1">Про нас</a></li>
+            <li><a class="link_nav_footer" href="#section2">Чому ми</a></li>
+            <li><a class="link_nav_footer" href="#section3">Наші процедури</a></li>
+            <li><a class="link_nav_footer" href="#section4">Контакти</a></li>
+        </ul>
+
+        <!-- Контакты -->
+        <div class="footer_contacts">
+            <ul class="ul_address">
+                <li><a href="tel:+380960000007" class="link_nav_footer">+38 (096) 000 00 07</a></li>
+                <li><a href="mailto:beautyzone@gmail.com" class="link_nav_footer">beautyzone@gmail.com</a></li>
+                <li><a href="https://maps.app.goo.gl/86zht8n7ZZGZGPXu9" target="_blank" class="link_nav_footer">
+                    Україна, м. Київ, вул. Тараса Шевченка 5
+                </a></li>
+            </ul>
+            <div class="adress_icons">
+                <a href="tel:+380960000007"><svg class="icon_footer" width="42" height="42"><use href="images/sprite.svg#telephone-icon"></use></svg></a>
+                <a href="https://www.facebook.com/yourusername" target="_blank"><svg class="icon_footer" width="42" height="42"><use href="images/sprite.svg#facebook-icon"></use></svg></a>
+                <a href="https://www.instagram.com/yourusername" target="_blank"><svg class="icon_footer" width="42" height="42"><use href="images/sprite.svg#instagram-icon"></use></svg></a>
             </div>
-            <img class="medicine_photo_footer" src="images/medicine_photo.svg" alt="Товари для краси">         
-    </footer> 
+        </div>
+
+        <!-- Политика конфиденциальности -->
+        <div class="footer_policy">
+            <a class="info_item" href="politics_of_confident.html" target="_blank">Політика конфіденційності</a>
+            <p class="info_safety">© 2024 Дані захищені</p>
+        </div>
+    </div>
+
+    <!-- Фото медицины вне блока с контентом -->
+    <img class="medicine_photo_footer" src="images/medicine_photo.svg" alt="Товари для краси">
+</footer>
+
+
+
+
     <button class="scroll_to_top" id="scrollToTop"></button>
     <script src="./js/main.js"></script>
 </body>
