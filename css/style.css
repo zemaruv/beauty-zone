@@ -290,8 +290,43 @@ ul {
     fill: var(--color-primary-light);
 }
 
+/* Бургер-меню */
+/* Бургер */
 .burger {
-    display: none;
+    display: none; /* только на адаптиве */
+    position: absolute;
+    top: 20px;
+    right: 32px;
+    width: 50px; /* ширина кликабельной области */
+    height: 40px; /* высота кликабельной области */
+    background-color: transparent; /* прозрачный фон */
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    cursor: pointer;
+    z-index: 100;
+    border: none; /* убрали границу */
+}
+
+.burger span {
+    display: block;
+    height: 4px; /* толщина полосок */
+    width: 100%; /* длина полосок */
+    background-color: #2B7FFF; /* синие полоски */
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+/* Анимация при открытии меню */
+.burger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+.burger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.burger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /*--------------------*/
@@ -336,6 +371,31 @@ h1 {
 .button_top:hover {
     color: var(--color-primary-dark);
     background-color: transparent;
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.is-hidden {
+  display: none;
+}
+
+.modal {
+  background: #fff;
+  padding: 32px;
+  border-radius: 16px;
+  max-width: 400px;
+  width: 90%;
 }
 
 /*--------------------*/
@@ -964,6 +1024,13 @@ h1 {
         font-size: 36px;
     }
 
+
+  .top_content h1,
+  .top_content p,
+  .top_content .button_top {
+    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+  }
+
     .section_about {
         flex-direction: column;
         gap: 32px;
@@ -978,10 +1045,19 @@ h1 {
         margin-top: 16px;
     }
 
-    .section_why_articles {
-        flex-direction: column;
-        gap: 24px;
-    }
+    .background_why {
+  padding-top: 150px; /* чтобы h2 оставался на волне */
+}
+
+.section_why {
+  align-items: center;
+}
+.section_why_articles {
+     flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
 
     .procedure_wrapper {
         flex-direction: column;
@@ -1033,7 +1109,76 @@ h1 {
         bottom: 10px;
         right: 10px;
     }
+
+
+    .header_menu {
+        display: none;
+    }
+
+    .header_menu.active {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: absolute;
+        top: 72px;
+        right: 32px;
+        background-color: rgba(255,255,255,0.95);
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+  .burger {
+        display: flex;
+    }
+
+    .header_menu {
+        display: none;
+    }
+
+    .header_menu.active {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        position: absolute;
+        top: 60px;
+        right: 32px;
+        background-color: rgba(255,255,255,0.95);
+        padding: 16px;
+        border-radius: 16px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+
+
+    .nav_icons {
+    display: none; /* убираем из хедера */
+  }
+
+  .header_menu.active .nav_icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+
+  .nav_icons svg {
+    width: 20px;
+    height: 20px;
+  }
+
+   .carousel_button {
+    display: none !important;
+  }
 }
+
+/* Соцсети в футере */
+.footer_contacts {
+  align-items: center;
+}
+.adress_icons {
+  justify-content: center;
+
+}
+
+
 
 /* Планшеты (768px - 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {

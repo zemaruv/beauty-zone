@@ -123,9 +123,38 @@ updateCarousel();
         carousel.addEventListener('touchmove', (e) => { const x = e.touches[0].pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeft - (x-startX)*2; });
 //Burger
 
-const burger = document.querySelector('.burger');
-const menu = document.querySelector('.header_menu');
+document.addEventListener("DOMContentLoaded", () => {
+  const burger = document.querySelector(".burger");
+  const menu = document.querySelector(".header_menu");
 
-burger.addEventListener('click', () => {
-    menu.classList.toggle('active');
+  if (burger && menu) {
+    burger.addEventListener("click", () => {
+      burger.classList.toggle("active");
+      menu.classList.toggle("active");
+    });
+  }
+
+  // --- МОДАЛКА ---
+  const callBtn = document.getElementById("call-btn");
+  const modal = document.getElementById("call-modal");
+  const modalClose = document.getElementById("modal-close");
+
+  if (callBtn && modal) {
+    callBtn.addEventListener("click", () => {
+      modal.classList.remove("is-hidden");
+    });
+  }
+
+  if (modalClose) {
+    modalClose.addEventListener("click", () => {
+      modal.classList.add("is-hidden");
+    });
+  }
+
+  // закрытие по клику вне модалки
+  modal?.addEventListener("click", (e) => {
+    if (e.target === modal) {
+      modal.classList.add("is-hidden");
+    }
+  });
 });
