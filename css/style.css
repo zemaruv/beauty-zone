@@ -434,18 +434,30 @@ h1 {
     margin-top: 43px;
 }
 
+
+.images_about_section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* чтобы звёзды тоже ориентировались по центру */
+  overflow: hidden; /* убираем лишний скролл */
+}
+
+/* Базовые стили звёзд */
 .icon_Star_1,
 .icon_Star_2,
 .icon_Star_3 {
-    position: absolute;
-    transform: translate(-50%, -50%) rotate(0deg);
-    flex-shrink: 0;
-    animation: spin 3s linear infinite paused;
+  position: absolute;
+  transform: translate(-50%, -50%) rotate(0deg);
+  flex-shrink: 0;
+  animation: spin 3s linear infinite paused;
+  z-index: 2; /* чтобы не прятались под картинкой */
 }
 
-.icon_Star_1 { top: 40%; left: 95%; width: 16px; height: 16px; fill: #747272; }
-.icon_Star_2 { top: 5%; left: 100%; width: 40px; height: 40px; fill: var(--color-brand-light); }
-.icon_Star_3 { top: 50%; left: 25%; width: 64px; height: 64px; fill: var(--color-brand); }
+/* Десктоп */
+.icon_Star_1 { top: 40%; left: 90%; width: 16px; height: 16px; fill: #747272; }
+.icon_Star_2 { top: 10%; left: 85%; width: 40px; height: 40px; fill: var(--color-brand-light); }
+.icon_Star_3 { top: 65%; left: 25%; width: 64px; height: 64px; fill: var(--color-brand); }
 
 @keyframes spin {
     from { transform: translate(-50%, -50%) rotate(0deg); }
@@ -491,6 +503,10 @@ h1 {
     position: relative; /* чтобы текст был поверх волны */
 }
 
+.section_why h2 {
+  margin-top: 40px; /* смещение вниз от волны */
+}
+
 .section_why_articles {
     display: flex;
     justify-content: space-between;
@@ -511,6 +527,10 @@ h1 {
     height: 48px;
     fill: var(--color-brand-light);
 }
+
+
+/* Секция процедури*/ 
+
 .section_procedure {
     display: flex;
     flex-direction: column;
@@ -750,6 +770,7 @@ h1 {
 /*--------------------*/
 /*        ФУТЕР        */
 /*--------------------*/
+
 /* Основной футер */
 .footer {
     background-color: #011C44;
@@ -768,61 +789,6 @@ h1 {
 }
 
 /* Логотип */
-.footer_logo img {
-    width: 160px;
-    height: auto;
-}
-
-/* Меню футера колонкой */
-.footer_menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.link_nav_footer {
-    text-decoration: none;
-    color: #fff;
-    transition: 0.2s;
-}
-
-.link_nav_footer:hover {
-    color: #2B7FFF;
-}
-
-/* Контакты */
-.footer_contacts {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.ul_address {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 8px 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-}
-
-.adress_icons {
-    display: flex;
-    gap: 12px;
-}
-
-.icon_footer {
-    fill: #fff;
-    transition: 0.2s;
-}
-
-.icon_footer:hover {
-    fill: #2B7FFF;
-}
-
 .footer_logo img {
     width: 160px;
     height: auto;
@@ -902,14 +868,44 @@ h1 {
     color: #747272;
 }
 
-/* Фото медицины — вне блока, правый нижний угол */
-.medicine_photo_footer {
+/* Фото медицины — прилипает к правому нижнему углу */
+  .footer_inner {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 24px;
+        position: relative;
+    }
+
+    .footer_logo {
+        margin-bottom: 16px;
+    }
+
+    .footer_menu {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer_contacts {
+        align-items: center;
+    }
+
+    .adress_icons {
+        justify-content: center;
+    }
+
+    .footer_policy {
+        text-align: center;
+    }
+    .medicine_photo_footer {
     position: absolute;
     bottom: 0;
     right: 0;
-    max-width: 200px;
+    width: 200px;
     height: auto;
+    z-index: 1;
 }
+
 /*--------------------*/
 /*     МОДАЛЬНОЕ ОКНО  */
 /*--------------------*/
@@ -973,15 +969,16 @@ h1 {
 
 .scroll_to_top {
     position: fixed;
-    bottom: 20px;
-    right: 50px;
-    background-color: #007bff;
-    color: #fff;
+    bottom: 40px; /* поднимем выше картинки медицины */
+    right: 20px;   /* отступ от правого края */
+    background-color: #007bff; /* синий фон */
+    color: #fff;   /* белая стрелка */
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
+    z-index: 9999; /* выше картинки медицины */
 }
 
 .scroll_to_top::before {
@@ -990,8 +987,9 @@ h1 {
 }
 
 .scroll_to_top:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* цвет при наведении не меняется */
 }
+
 
 
 /* -------------------- */
@@ -1000,157 +998,189 @@ h1 {
 
 /* Мобильные устройства (до 768px) */
 @media (max-width: 768px) {
-    .header_container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
+  .header_container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 
-    .header_menu {
-        flex-direction: column;
-        gap: 16px;
-        margin: 16px 0;
-    }
+  .header_menu {
+    display: none;
+    flex-direction: column;
+    gap: 16px;
+    margin: 16px 0;
+  }
 
-    .top_content {
-        padding-left: 20px;
-        text-align: center;
-    }
+  .top_content {
+    padding-left: 20px;
+    text-align: center;
+  }
 
-    h1 {
-        font-size: 64px;
-    }
+  h1 {
+    font-size: 64px;
+    text-align: center;
+  }
 
-    h2 {
-        font-size: 36px;
-    }
+  h2 {
+    font-size: 36px;
+    text-align: center;
+  }
 
+  /* Лого в хедере — небольшой отступ от края */
+  .nav_header a img {
+    margin-left: 12px;
+  }
+
+  /* Секция "Про нас" */
+  .section_about {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 32px;
+  }
+
+  .container_about {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .images_about_section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 0;
+  }
+
+  .second_images_about_section {
+    margin: 16px auto 0 auto;
+  }
 
   .top_content h1,
   .top_content p,
   .top_content .button_top {
-    text-shadow: 0 0 6px rgba(0,0,0,0.7);
+    text-shadow: 0 0 6px rgba(0, 0, 0, 0.7);
   }
 
-    .section_about {
-        flex-direction: column;
-        gap: 32px;
-    }
+  /* Секция "Чому ми" */
+  .section_why h2 {
+    margin-top: 80px;
+  }
 
-    .images_about_section {
-        margin-left: 0;
-    }
+  .section_why {
+    align-items: center;
+  }
 
-    .second_images_about_section {
-        margin-left: 0;
-        margin-top: 16px;
-    }
+  .section_why_articles {
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
 
-    .background_why {
-  padding-top: 150px; /* чтобы h2 оставался на волне */
+/* Обертка карусели */
+.procedure_track_wrapper {
+    overflow-x: scroll;       /* разрешаем горизонтальный скролл */
+    -ms-overflow-style: none; /* IE и Edge */
+    scrollbar-width: none;    /* Firefox */
 }
 
-.section_why {
-  align-items: center;
-}
-.section_why_articles {
-     flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 24px;
+/* Скрываем скроллбар для Chrome, Safari, Opera */
+.procedure_track_wrapper::-webkit-scrollbar {
+    display: none;
 }
 
-    .procedure_wrapper {
-        flex-direction: column;
-        align-items: center;
-    }
+/* Трек карусели */
+.procedure_track {
+    display: flex;
+    gap: 16px;
+    transition: transform 0.5s ease;
+}
 
-    .carousel_button.prev,
-    .carousel_button.next {
-        left: 10px;
-        right: 10px;
-        top: auto;
-        bottom: -60px;
-        transform: translateY(0);
-    }
 
-    .procedure_track_wrapper {
-        overflow-x: scroll;
-    }
+  .articles_items {
+    min-width: 250px;
+    height: auto;
+  }
 
-    .articles_items {
-        min-width: 250px;
-        height: auto;
-    }
+  .carousel_button {
+    display: none !important;
+  }
 
-    .section_contacts_items {
-        flex-direction: column;
-        gap: 24px;
-    }
+  /* Контакты */
+  .section_contacts_items {
+    flex-direction: column;
+    gap: 24px;
+  }
 
-    .map,
-    .form_contacts {
-        width: 100%;
-        max-width: 100%;
-        height: auto;
-    }
+  .map,
+  .form_contacts {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
 
-    .footer_inner {
+   
+     .footer_inner {
         flex-direction: column;
         align-items: center;
         text-align: center;
+        gap: 16px;
     }
 
+
+    .footer_logo {
+        margin-bottom: 16px;
+    }
+
+    .footer_menu {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .footer_contacts {
+        align-items: center;
+    }
+
+    .adress_icons {
+        justify-content: center;
+    }
+
+    
     .footer_policy {
         text-align: center;
     }
 
-    .medicine_photo_footer {
-        max-width: 150px;
-        bottom: 10px;
-        right: 10px;
-    }
 
-
-    .header_menu {
-        display: none;
+   .medicine_photo_footer {
+        position: absolute;   /* остаётся absolute */
+        bottom: 0;            /* прилипает к низу футера */
+        right: 0;             /* прилипает к правому краю */
+        width: 150px;         /* чуть меньше */
+        height: auto;
+        z-index: 1;
     }
-
-    .header_menu.active {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        position: absolute;
-        top: 72px;
-        right: 32px;
-        background-color: rgba(255,255,255,0.95);
-        padding: 16px;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    /* Добавим паддинг футера */
+   .footer {
+        padding-bottom: 100px; /* увеличили до 200px */
     }
+  /* Бургер */
   .burger {
-        display: flex;
-    }
+    display: flex;
+  }
 
-    .header_menu {
-        display: none;
-    }
+  .header_menu.active {
+    display: flex;
+    position: absolute;
+    top: 60px;
+    right: 32px;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 16px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
 
-    .header_menu.active {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        position: absolute;
-        top: 60px;
-        right: 32px;
-        background-color: rgba(255,255,255,0.95);
-        padding: 16px;
-        border-radius: 16px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-    }
-
-
-    .nav_icons {
-    display: none; /* убираем из хедера */
+  /* Соцсети */
+  .nav_icons {
+    display: none;
   }
 
   .header_menu.active .nav_icons {
@@ -1164,48 +1194,92 @@ h1 {
     height: 20px;
   }
 
-   .carousel_button {
-    display: none !important;
+  .footer_contacts {
+    align-items: center;
+  }
+
+  .adress_icons {
+    justify-content: center;
+  }
+
+  /* Звёзды */
+  .icon_Star_1 {
+    top: 30%;
+    left: 75%;
+    width: 12px;
+    height: 12px;
+  }
+
+  .icon_Star_2 {
+    top: 5%;
+    left: 70%;
+    width: 22px;
+    height: 22px;
+  }
+
+  .icon_Star_3 {
+    top: 55%;
+    left: 20%;
+    width: 36px;
+    height: 36px;
   }
 }
 
-/* Соцсети в футере */
-.footer_contacts {
-  align-items: center;
-}
-.adress_icons {
-  justify-content: center;
-
-}
-
-
-
 /* Планшеты (768px - 1200px) */
 @media (min-width: 769px) and (max-width: 1200px) {
-    h1 {
-        font-size: 100px;
-    }
+  h1 {
+    font-size: 100px;
+  }
 
-    h2 {
-        font-size: 48px;
-    }
+  h2 {
+    font-size: 48px;
+  }
 
-    .header_menu {
-        gap: 32px;
-        margin: 0 80px;
-    }
+  .header_menu {
+    gap: 32px;
+    margin: 0 80px;
+  }
 
-    .section_about {
-        gap: 64px;
-    }
+  .section_about {
+    gap: 64px;
+  }
 
-    .section_why_articles {
-        gap: 16px;
-    }
+  .section_why_articles {
+    gap: 16px;
+  }
 
-    .procedure_wrapper {
-        gap: 8px;
-    }
+  .procedure_wrapper {
+    gap: 8px;
+  }
+
+  /* Звёзды */
+  .icon_Star_1 {
+    top: 35%;
+    left: 80%;
+    width: 14px;
+    height: 14px;
+  }
+
+  .icon_Star_2 {
+    top: 8%;
+    left: 78%;
+    width: 28px;
+    height: 28px;
+  }
+
+  .icon_Star_3 {
+    top: 60%;
+    left: 22%;
+    width: 48px;
+    height: 48px;
+  }
 }
 
-
+/* Очень маленькие экраны (до 480px) */
+@media (max-width: 480px) {
+  .icon_Star_1,
+  .icon_Star_2,
+  .icon_Star_3 {
+    display: none;
+  }
+}

@@ -1,17 +1,15 @@
-//Form of footer
-
-
+// ====== Форма футера ======
 const form = document.getElementById('contactForm');
 const successMessage = document.getElementById('successMessage');
 
-form.addEventListener('submit', function(e) {
+form?.addEventListener('submit', function(e) {
     e.preventDefault();
 
     const name = document.getElementById('name').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const email = document.getElementById('email').value.trim();
 
-    // Проверка имени (только буквы, украинские и латинские)
+    // Проверка имени (только буквы)
     const nameRegex = /^[a-zA-Zа-яА-ЯёЁіїІЇєЄґҐ\s'-]+$/u;
     if (!nameRegex.test(name)) {
         alert("Будь ласка, введіть правильне ім'я (тільки букви).");
@@ -33,50 +31,54 @@ form.addEventListener('submit', function(e) {
     }
 
     // Если всё ок, показываем сообщение
-    successMessage.classList.add('show');
+    successMessage?.classList.add('show');
 
-    // Можно очистить форму
+    // Очистка формы
     form.reset();
 
     // Скрыть сообщение через 3 секунды
     setTimeout(() => {
-        successMessage.classList.remove('show');
+        successMessage?.classList.remove('show');
     }, 3000);
 });
 
 
-
-//Carousel
-
+// ====== Карусель ======
 const prevBtn = document.querySelector('.carousel_button.prev');
 const nextBtn = document.querySelector('.carousel_button.next');
 const track = document.querySelector('.procedure_track');
+const wrapper = document.querySelector('.procedure_track_wrapper');
 const articles = Array.from(track.children);
 const dots = document.querySelectorAll('.dot');
+const carousel = wrapper; // для свайпа
 
 let currentIndex = 0;
 
-// Дублируем первые и последние элементы для бесконечной прокрутки
+// Дублируем элементы для бесконечной прокрутки
 track.append(...articles.map(article => article.cloneNode(true)));
 track.prepend(...articles.map(article => article.cloneNode(true)));
 
-function updateCarousel() {
-    const articleWidth = articles[0].offsetWidth + 16; // ширина + gap
-    track.style.transition = 'transform 0.5s ease';
-    track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length)}px)`;
-
+// Обновление активной точки
+function updateDots(index) {
     dots.forEach(dot => dot.classList.remove('active'));
-    dots[currentIndex % dots.length].classList.add('active');
+    dots[index % dots.length].classList.add('active');
 }
 
-// Листаем назад
-prevBtn.addEventListener('click', () => {
+// Обновление карусели
+function updateCarousel() {
+    const articleWidth = articles[0].offsetWidth + 16;
+    track.style.transition = 'transform 0.5s ease';
+    track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length)}px)`;
+    updateDots(currentIndex);
+}
+
+// Кнопки ПК
+prevBtn?.addEventListener('click', () => {
     currentIndex--;
     updateCarousel();
 });
 
-// Листаем вперед
-nextBtn.addEventListener('click', () => {
+nextBtn?.addEventListener('click', () => {
     currentIndex++;
     updateCarousel();
 });
@@ -89,7 +91,7 @@ dots.forEach((dot, index) => {
     });
 });
 
-// Плавный бесконечный цикл
+// Бесконечный цикл
 track.addEventListener('transitionend', () => {
     const articleWidth = articles[0].offsetWidth + 16;
     if (currentIndex < 0) {
@@ -104,57 +106,77 @@ track.addEventListener('transitionend', () => {
     }
 });
 
-// Инициализация
+// Мобильный скролл (свайп)
+wrapper?.addEventListener('scroll', () => {
+    const scrollLeft = wrapper.scrollLeft;
+    const articleWidth = articles[0].offsetWidth + 16;
+    const newIndex = Math.round(scrollLeft / articleWidth);
+
+    if (newIndex !== currentIndex) {
+        currentIndex = newIndex;
+        updateDots(currentIndex);
+    }
+});
+
+// Свайп мышью и сенсор
+let isDown = false;
+let startX;
+let scrollStart;
+
+carousel?.addEventListener('mousedown', (e) => {
+    isDown = true;
+    startX = e.pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+});
+carousel?.addEventListener('mouseleave', () => isDown = false);
+carousel?.addEventListener('mouseup', () => isDown = false);
+carousel?.addEventListener('mousemove', (e) => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    carousel.scrollLeft = scrollStart - (x - startX) * 2;
+});
+carousel?.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].pageX - carousel.offsetLeft;
+    scrollStart = carousel.scrollLeft;
+});
+carousel?.addEventListener('touchmove', (e) => {
+    const x = e.touches[0].pageX - carousel.offsetLeft;
+    carousel.scrollLeft = scrollStart - (x - startX) * 2;
+});
+
+// Инициализация карусели
 updateCarousel();
 
 
-
-        // Свайп для мобильных
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        carousel.addEventListener('mousedown', (e) => { isDown = true; startX = e.pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
-        carousel.addEventListener('mouseleave', () => isDown = false);
-        carousel.addEventListener('mouseup', () => isDown = false);
-        carousel.addEventListener('mousemove', (e) => { if(!isDown) return; e.preventDefault(); const x = e.pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeft - (x-startX)*2; });
-
-        carousel.addEventListener('touchstart', (e) => { startX = e.touches[0].pageX - carousel.offsetLeft; scrollLeft = carousel.scrollLeft; });
-        carousel.addEventListener('touchmove', (e) => { const x = e.touches[0].pageX - carousel.offsetLeft; carousel.scrollLeft = scrollLeft - (x-startX)*2; });
-//Burger
-
+// ====== Бургер ======
 document.addEventListener("DOMContentLoaded", () => {
-  const burger = document.querySelector(".burger");
-  const menu = document.querySelector(".header_menu");
+    const burger = document.querySelector(".burger");
+    const menu = document.querySelector(".header_menu");
 
-  if (burger && menu) {
-    burger.addEventListener("click", () => {
-      burger.classList.toggle("active");
-      menu.classList.toggle("active");
+    burger?.addEventListener("click", () => {
+        burger.classList.toggle("active");
+        menu?.classList.toggle("active");
     });
-  }
 
-  // --- МОДАЛКА ---
-  const callBtn = document.getElementById("call-btn");
-  const modal = document.getElementById("call-modal");
-  const modalClose = document.getElementById("modal-close");
+    // Модалка
+    const callBtn = document.getElementById("call-btn");
+    const modal = document.getElementById("call-modal");
+    const modalClose = document.getElementById("modal-close");
 
-  if (callBtn && modal) {
-    callBtn.addEventListener("click", () => {
-      modal.classList.remove("is-hidden");
+    callBtn?.addEventListener("click", () => modal?.classList.remove("is-hidden"));
+    modalClose?.addEventListener("click", () => modal?.classList.add("is-hidden"));
+
+    modal?.addEventListener("click", (e) => {
+        if (e.target === modal) modal.classList.add("is-hidden");
     });
-  }
+});
 
-  if (modalClose) {
-    modalClose.addEventListener("click", () => {
-      modal.classList.add("is-hidden");
+
+// ====== Кнопка ВВЕРХ ======
+document.addEventListener('DOMContentLoaded', () => {
+    const scrollToTopBtn = document.getElementById('scrollToTop');
+    scrollToTopBtn?.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-  }
-
-  // закрытие по клику вне модалки
-  modal?.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      modal.classList.add("is-hidden");
-    }
-  });
 });
