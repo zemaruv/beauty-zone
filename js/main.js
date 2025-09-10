@@ -1,62 +1,56 @@
-// ====== Форма футера ======
-const form = document.getElementById('contactForm');
-const successMessage = document.getElementById('successMessage');
+// ==================== BURGER MENU ====================
+const burger = document.querySelector('.burger');
+const headerMenu = document.querySelector('.header_menu');
 
-form?.addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const phone = document.getElementById('phone').value.trim();
-    const email = document.getElementById('email').value.trim();
-
-    // Проверка имени (только буквы)
-    const nameRegex = /^[a-zA-Zа-яА-ЯёЁіїІЇєЄґҐ\s'-]+$/u;
-    if (!nameRegex.test(name)) {
-        alert("Будь ласка, введіть правильне ім'я (тільки букви).");
-        return;
-    }
-
-    // Проверка телефона (только цифры)
-    const phoneRegex = /^\d+$/;
-    if (!phoneRegex.test(phone)) {
-        alert("Будь ласка, введіть правильний номер телефону (тільки цифри).");
-        return;
-    }
-
-    // Проверка email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        alert("Будь ласка, введіть правильну електронну пошту.");
-        return;
-    }
-
-    // Если всё ок, показываем сообщение
-    successMessage?.classList.add('show');
-
-    // Очистка формы
-    form.reset();
-
-    // Скрыть сообщение через 3 секунды
-    setTimeout(() => {
-        successMessage?.classList.remove('show');
-    }, 3000);
+burger.addEventListener('click', () => {
+    burger.classList.toggle('active');
+    headerMenu.classList.toggle('active');
 });
 
+// ==================== MODAL ====================
+const modal = document.getElementById('call-modal');
+const openModalBtn = document.getElementById('call-btn');
+const closeModalBtn = document.getElementById('modal-close');
 
+function openModal() {
+    modal.classList.remove('is-hidden');
+}
+function closeModal() {
+    modal.classList.add('is-hidden');
+}
+
+openModalBtn.addEventListener('click', openModal);
+closeModalBtn.addEventListener('click', closeModal);
+
+// Закрытие при клике на фон
+modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+});
+
+// Закрытие по нажатию Esc
+document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && !modal.classList.contains('is-hidden')) {
+        closeModal();
+    }
+});
 // ====== Карусель ======
 const prevBtn = document.querySelector('.carousel_button.prev');
 const nextBtn = document.querySelector('.carousel_button.next');
 const track = document.querySelector('.procedure_track');
 const wrapper = document.querySelector('.procedure_track_wrapper');
-const articles = Array.from(track.children);
+let articles = Array.from(track.children);
 const dots = document.querySelectorAll('.dot');
-const carousel = wrapper; // для свайпа
 
 let currentIndex = 0;
 
 // Дублируем элементы для бесконечной прокрутки
 track.append(...articles.map(article => article.cloneNode(true)));
 track.prepend(...articles.map(article => article.cloneNode(true)));
+
+articles = Array.from(track.children); // обновляем список слайдов
+
+const articleWidth = articles[0].offsetWidth + 16; // учитываем margin (16px)
+track.style.transform = `translateX(${-articleWidth * articles.length / 3}px)`; // начинаем с первого настоящего слайда
 
 // Обновление активной точки
 function updateDots(index) {
@@ -66,9 +60,8 @@ function updateDots(index) {
 
 // Обновление карусели
 function updateCarousel() {
-    const articleWidth = articles[0].offsetWidth + 16;
     track.style.transition = 'transform 0.5s ease';
-    track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length)}px)`;
+    track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length / 3)}px)`;
     updateDots(currentIndex);
 }
 
@@ -77,7 +70,6 @@ prevBtn?.addEventListener('click', () => {
     currentIndex--;
     updateCarousel();
 });
-
 nextBtn?.addEventListener('click', () => {
     currentIndex++;
     updateCarousel();
@@ -93,90 +85,44 @@ dots.forEach((dot, index) => {
 
 // Бесконечный цикл
 track.addEventListener('transitionend', () => {
-    const articleWidth = articles[0].offsetWidth + 16;
+    track.style.transition = 'none';
     if (currentIndex < 0) {
-        currentIndex = articles.length - 1;
-        track.style.transition = 'none';
-        track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length)}px)`;
+        currentIndex = dots.length - 1;
+        track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length / 3)}px)`;
     }
-    if (currentIndex >= articles.length) {
+    if (currentIndex >= dots.length) {
         currentIndex = 0;
-        track.style.transition = 'none';
-        track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length)}px)`;
+        track.style.transform = `translateX(${-articleWidth * (currentIndex + articles.length / 3)}px)`;
     }
 });
 
-// Мобильный скролл (свайп)
-wrapper?.addEventListener('scroll', () => {
-    const scrollLeft = wrapper.scrollLeft;
-    const articleWidth = articles[0].offsetWidth + 16;
-    const newIndex = Math.round(scrollLeft / articleWidth);
 
-    if (newIndex !== currentIndex) {
-        currentIndex = newIndex;
-        updateDots(currentIndex);
+// ==================== SCROLL TO TOP ====================
+const scrollBtn = document.getElementById('scrollToTop');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 300) {
+        scrollBtn.classList.add('show');
+    } else {
+        scrollBtn.classList.remove('show');
     }
 });
 
-// Свайп мышью и сенсор
-let isDown = false;
-let startX;
-let scrollStart;
-
-carousel?.addEventListener('mousedown', (e) => {
-    isDown = true;
-    startX = e.pageX - carousel.offsetLeft;
-    scrollStart = carousel.scrollLeft;
+scrollBtn.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
 });
-carousel?.addEventListener('mouseleave', () => isDown = false);
-carousel?.addEventListener('mouseup', () => isDown = false);
-carousel?.addEventListener('mousemove', (e) => {
-    if (!isDown) return;
+
+// ==================== FORM SUBMISSION ====================
+const form = document.getElementById('contactForm');
+const successMessage = document.getElementById('successMessage');
+
+form.addEventListener('submit', function(e) {
     e.preventDefault();
-    const x = e.pageX - carousel.offsetLeft;
-    carousel.scrollLeft = scrollStart - (x - startX) * 2;
-});
-carousel?.addEventListener('touchstart', (e) => {
-    startX = e.touches[0].pageX - carousel.offsetLeft;
-    scrollStart = carousel.scrollLeft;
-});
-carousel?.addEventListener('touchmove', (e) => {
-    const x = e.touches[0].pageX - carousel.offsetLeft;
-    carousel.scrollLeft = scrollStart - (x - startX) * 2;
-});
-
-// Инициализация карусели
-updateCarousel();
-
-
-// ====== Бургер ======
-document.addEventListener("DOMContentLoaded", () => {
-    const burger = document.querySelector(".burger");
-    const menu = document.querySelector(".header_menu");
-
-    burger?.addEventListener("click", () => {
-        burger.classList.toggle("active");
-        menu?.classList.toggle("active");
-    });
-
-    // Модалка
-    const callBtn = document.getElementById("call-btn");
-    const modal = document.getElementById("call-modal");
-    const modalClose = document.getElementById("modal-close");
-
-    callBtn?.addEventListener("click", () => modal?.classList.remove("is-hidden"));
-    modalClose?.addEventListener("click", () => modal?.classList.add("is-hidden"));
-
-    modal?.addEventListener("click", (e) => {
-        if (e.target === modal) modal.classList.add("is-hidden");
-    });
-});
-
-
-// ====== Кнопка ВВЕРХ ======
-document.addEventListener('DOMContentLoaded', () => {
-    const scrollToTopBtn = document.getElementById('scrollToTop');
-    scrollToTopBtn?.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
+    // Здесь можно добавить AJAX или fetch для отправки формы
+    successMessage.classList.add('show');
+    setTimeout(() => successMessage.classList.remove('show'), 3000);
+    form.reset();
 });
