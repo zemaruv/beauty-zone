@@ -1,10 +1,21 @@
 // ==================== BURGER MENU ====================
 const burger = document.querySelector('.burger');
 const headerMenu = document.querySelector('.header_menu');
+const menuBackdrop = document.createElement('div');
+menuBackdrop.classList.add('menu_backdrop');
+document.body.appendChild(menuBackdrop);
 
 burger.addEventListener('click', () => {
     burger.classList.toggle('active');
     headerMenu.classList.toggle('active');
+    menuBackdrop.classList.toggle('active');
+});
+
+// Закрытие меню при клике на фон
+menuBackdrop.addEventListener('click', () => {
+    burger.classList.remove('active');
+    headerMenu.classList.remove('active');
+    menuBackdrop.classList.remove('active');
 });
 
 // ==================== MODAL ====================
