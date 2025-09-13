@@ -199,7 +199,7 @@ ul {
     background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
-    overflow: hidden; /* чтобы волна не выступала */
+    overflow: hidden; 
     }
     
 /* Волна снизу */
@@ -212,7 +212,6 @@ ul {
     z-index: 2;
 }
 
-/* Градиент поверх фона (если нужно) */
 .background_header::before {
     content: "";
     position: absolute;
@@ -227,17 +226,15 @@ ul {
         rgba(255, 255, 255, 0.19) 58.65%,
         rgba(255, 255, 255, 0) 72.78%
     );
-    z-index: 1;
+    
 }
 
 
-/* чтобы хедер и контент были поверх картинки */
 .background_nav,
 .top_content {
     position: relative;
-    z-index: 2;
+    
 }
-
 
 .background_nav {
     background: rgba(255, 255, 255, 0.25);
@@ -266,15 +263,8 @@ ul {
 .header_menu {
     display: flex;
     gap: 56px;
-    margin: 0 240px;
     transition: all 0.3s ease;
 }
-
-.header_menu.active {
-    display: flex;
-    flex-direction: column;
-}
-
 
 .nav_icons {
     display: flex;
@@ -291,50 +281,63 @@ ul {
 }
 
 /* Бургер-меню */
-/* Бургер */
 .burger {
-    display: none; /* только на адаптиве */
+    display: none;
     position: absolute;
     top: 20px;
     right: 32px;
-    width: 50px; /* ширина кликабельной области */
-    height: 40px; /* высота кликабельной области */
-    background-color: transparent; /* прозрачный фон */
-    flex-direction: column;
-    justify-content: space-around;
+    width: 50px;
+    height: 50px;
+    background-color: transparent;
+    justify-content: center;
     align-items: center;
     cursor: pointer;
-    z-index: 100;
-    border: none; /* убрали границу */
+    z-index: 2000;
+     border: none;
 }
 
 .burger span {
     display: block;
-    height: 4px; /* толщина полосок */
-    width: 100%; /* длина полосок */
-    background-color: #2B7FFF; /* синие полоски */
-    border-radius: 2px;
+    position: absolute; 
+    height: 4px;
+    width: 40px;
+    background-color: #2B7FFF;
     transition: all 0.3s ease;
 }
 
-/* Анимация при открытии меню */
+
+.burger span:nth-child(1) {
+    top: 10px;
+}
+.burger span:nth-child(2) {
+    top: 50%;
+    transform: translateY(-50%);
+}
+.burger span:nth-child(3) {
+    bottom: 10px;
+}
+
+
 .burger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    top: 50%;
+    transform: translateY(-50%) rotate(45deg);
 }
 .burger.active span:nth-child(2) {
     opacity: 0;
 }
-
 .burger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(6px, -6px);
+    top: 50%;
+    transform: translateY(-50%) rotate(-45deg);
 }
+
+
 
 /*--------------------*/
 /*       TOP CONTENT  */
 /*--------------------*/
 .top_content {
     padding-left: 100px;
-    text-align: left; /* или center, если нужно по центру */
+    text-align: left; 
     color: #fff;
 }
 
@@ -415,8 +418,8 @@ h1 {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center; /* чтобы звёзды тоже ориентировались по центру */
-  overflow: hidden; /* убираем лишний скролл */
+  align-items: center; 
+  overflow: hidden; 
 }
 
 /* Базовые стили звёзд */
@@ -427,7 +430,7 @@ h1 {
   transform: translate(-50%, -50%) rotate(0deg);
   flex-shrink: 0;
   animation: spin 3s linear infinite paused;
-  z-index: 2; /* чтобы не прятались под картинкой */
+  z-index: 2; 
 }
 
 /* Десктоп */
@@ -522,7 +525,7 @@ h1 {
     gap: 16px;
     width: 100%;
     max-width: 1080px;
-    position: relative; /* для абсолютных стрелок */
+    position: relative; 
 }
 
 .procedure_track_wrapper {
@@ -595,11 +598,11 @@ h1 {
 }
 
 .carousel_button.prev {
-    left: -60px; /* выводим левую стрелку наружу */
+    left: -60px; 
 }
 
 .carousel_button.next {
-    right: -60px; /* выводим правую стрелку наружу */
+    right: -60px; 
 }
 
 .carousel_button:hover {
@@ -644,6 +647,7 @@ h1 {
     gap: 48px;
 }
 
+
 .map {
     width: 605px;
     height: 481px;
@@ -654,15 +658,22 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* центрирует контент по вертикали */
+    justify-content: center; 
     background-color: var(--color-brand);
     width: 423px;
     height: 481px;
     border-radius: 32px;
     padding: 32px 24px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
-    text-align: center; /* центрирует текст */
+    text-align: center;
 }
+
+.form_contacts form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px; 
+}
+
 
 /* Параграф формы */
 .parag_form_contacts {
@@ -673,7 +684,7 @@ h1 {
 }
 
 .parag_form_contacts span {
-    color: #2B7FFF; /* слово "безкоштовно" */
+    color: #2B7FFF; 
     font-weight: 600;
 }
 
@@ -737,7 +748,7 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  flex-wrap: wrap; /* чтобы переносилось при нехватке места */
+  flex-wrap: wrap; 
   gap: 20px;
   position: relative;
 }
@@ -768,7 +779,7 @@ h1 {
   color: #fff; 
 }
 .link_nav_footer:hover {
-  color: #5B86E5; /* например синий оттенок */
+  color: #5B86E5; 
 }
 
 /* Контакты */
@@ -845,7 +856,7 @@ h1 {
 }
 
 /* Модалка */
-/* Фон модалки */
+
 .modal {
   position: relative;
   max-width: 600px;
@@ -855,10 +866,10 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--color-primary-dark); /* темный фон */
-  color: #fff; /* текст белый */
+  background-color: var(--color-primary-dark); 
+  color: #fff; 
   box-sizing: border-box;
-  box-shadow: 0 0 30px rgba(0,0,0,0.5); /* мягкая тень вместо рамки */
+  box-shadow: 0 0 30px rgba(0,0,0,0.5); 
 }
 
 .modal-close {
@@ -877,14 +888,13 @@ h1 {
   font-size: 32px;
   margin-bottom: 25px;
   text-align: center;
-  color: #fff; /* обязательно белый */
+  color: #fff; 
 }
 
 .form_contacts {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
 }
 
 .form_input_modal {
@@ -893,7 +903,7 @@ h1 {
   height: 50px;
   border-radius: 32px;
   border: 2px solid #747272;
-  background-color: rgba(255, 255, 255, 0.1); /* прозрачный, но видимый */
+  background-color: rgba(255, 255, 255, 0.1); 
   margin: 12px 0;
   color: #fff;
   padding-left: 16px;
@@ -913,6 +923,8 @@ h1 {
   cursor: pointer;
   margin-top: 16px;
   transition: 0.3s;
+  margin: 0 auto;
+ 
 }
 
 .button_form_contacts:hover {
@@ -927,16 +939,16 @@ h1 {
 
 .scroll_to_top {
     position: fixed;
-    bottom: 40px; /* поднимем выше картинки медицины */
-    right: 20px;   /* отступ от правого края */
-    background-color: #007bff; /* синий фон */
-    color: #fff;   /* белая стрелка */
+    bottom: 40px; 
+    right: 20px;  
+    background-color: #007bff; 
+    color: #fff; 
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    z-index: 9999; /* выше картинки медицины */
+    z-index: 9999; 
 }
 
 .scroll_to_top::before {
@@ -945,10 +957,8 @@ h1 {
 }
 
 .scroll_to_top:hover {
-    background-color: #0056b3; /* цвет при наведении не меняется */
+    background-color: #0056b3; /
 }
-
-
 
 /* -------------------- */
 /*  Адаптивность         */
@@ -960,30 +970,62 @@ h1 {
     flex-direction: column;
     align-items: flex-start;
   }
-
-  .header_menu {
-    display: none;
-    flex-direction: column;
-    gap: 16px;
-    margin: 16px 0;
-  }
-
-  .top_content {
+.background_nav,
+.top_content {
+    position: relative; /* можно оставить relative */
     padding-left: 20px;
     text-align: center;
   }
 
-  h1 {
+.header_menu {
+    position: fixed;
+    top: 90px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999; 
+    display: none; 
+    flex-direction: column;
+    gap: 16px;
+    padding: 24px 32px;
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 16px;
+    width: 90%;
+    max-width: 400px;
+  }
+
+ .header_menu.active {
+    display: flex;
+  }
+
+    /* Фон-затемнение */
+.menu_backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5); 
+    display: none;
+}
+
+.menu_backdrop.active {
+    display: block;
+}
+
+.wave_bottom {
+    display: none;
+}
+
+h1 {
     font-size: 64px;
     text-align: center;
   }
 
-  h2 {
+h2 {
     font-size: 36px;
     text-align: center;
   }
 
-  /* Лого в хедере — небольшой отступ от края */
   .nav_header a img {
     margin-left: 12px;
   }
@@ -1054,118 +1096,86 @@ h1 {
 }
 
 
-  .articles_items {
+.articles_items {
     min-width: 250px;
     height: auto;
   }
 
-  .carousel_button {
+ .carousel_button {
     display: none !important;
   }
 
   /* Контакты */
-  .section_contacts_items {
+.section_contacts_items {
     flex-direction: column;
     gap: 24px;
   }
 
-  .map,
-  .form_contacts {
+.map,
+.form_contacts {
     width: 100%;
     max-width: 100%;
     height: auto;
   }
 
    
-      .footer_inner {
+.footer_inner {
     flex-direction: column;
     align-items: center;
     text-align: center;
   }
 
-    .footer_logo {
+.footer_logo {
         margin-bottom: 16px;
     }
 
-     .footer_menu {
+.footer_menu {
     flex-direction: column;
     align-items: center;
   }
 
-    .footer_contacts {
+.footer_contacts {
     align-items: center;
   }
 
-    .adress_icons {
+.adress_icons {
     justify-content: center;
   }
-
     
-    .footer_policy {
+.footer_policy {
         text-align: center;
     }
 
-
-   .medicine_photo_footer {
+.medicine_photo_footer {
     display: none;
   }
    
   /* Бургер */
-  .burger {
+.burger {
     display: flex;
-  }
-
-  .header_menu.active {
-    display: flex;
-    position: absolute;
-    top: 60px;
-    right: 32px;
-    background-color: rgba(255, 255, 255, 0.95);
-    padding: 16px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   }
 
   /* Соцсети */
-  .nav_icons {
+.nav_icons {
     display: none;
   }
 
-  .header_menu.active .nav_icons {
-    display: flex;
-    justify-content: center;
-    margin-top: 16px;
-  }
-
-  .nav_icons svg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .footer_contacts {
-    align-items: center;
-  }
-
-  .adress_icons {
-    justify-content: center;
-  }
-
   /* Звёзды */
-  .icon_Star_1 {
+.icon_Star_1 {
     top: 30%;
     left: 75%;
     width: 12px;
     height: 12px;
   }
 
-  .icon_Star_2 {
+.icon_Star_2 {
     top: 5%;
     left: 70%;
     width: 22px;
     height: 22px;
   }
 
-  .icon_Star_3 {
+.icon_Star_3 {
     top: 55%;
     left: 20%;
     width: 36px;
