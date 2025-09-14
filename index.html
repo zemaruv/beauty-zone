@@ -56,9 +56,9 @@
         <button id="modal-close" class="modal-close">&times;</button>
         <h2 class="title_modal">Замовити дзвінок</h2>
       <p>Залиште ваші дані, і ми зателефонуємо вам</p>
-      <input type="text" name="name" placeholder="Ваше ім’я" class="form_input_modal" 
+      <input type="text" name="name" autocomplete="name"  placeholder="Ваше ім’я" class="form_input_modal" 
              pattern="^[A-Za-zА-Яа-яЇїІіЄєҐґ\s]+$" title="Тільки букви" required>
-      <input type="tel" name="phone" placeholder="Ваш телефон" class="form_input_modal" 
+      <input type="tel" autocomplete="tel"  name="phone" placeholder="Ваш телефон" class="form_input_modal" 
              pattern="^[0-9]+$" title="Тільки цифри" required>
       <button type="submit" class="button_form_contacts">Відправити</button>
     </form>
@@ -160,9 +160,9 @@
                 <div class="form_contacts">
                 <p class="parag_form_contacts">Запишіться <span>безкоштовно</span> та отримайте подарунок</p>
                 <form id="contactForm">
-                    <input class="form_input" type="text" id="name" placeholder="Ваше ім'я та прізвище" required>
-                    <input class="form_input" type="tel" id="phone" placeholder="Ваш номер телефону" required>
-                    <input class="form_input" type="email" id="email" placeholder="Ваша електронна пошта" required>
+                    <input class="form_input" type="text" id="name" autocomplete="name"  placeholder="Ваше ім'я та прізвище" required>
+                    <input class="form_input" type="tel" id="phone" autocomplete="phone"  placeholder="Ваш номер телефону" required>
+                    <input class="form_input" type="email" id="email" autocomplete="email"  placeholder="Ваша електронна пошта" required>
                     <button type="submit" class="button_form_contacts">Записатися безкоштовно</button>
                 </form>
                 <div id="successMessage" class="success_message">Дані успішно надіслані!</div>

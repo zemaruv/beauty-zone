@@ -280,6 +280,47 @@ ul {
     fill: var(--color-primary-light);
 }
 
+.header_menu .link_nav
+{
+    position: relative;
+    text-decoration: none;
+    color: #000;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+}
+
+
+.footer_menu .link_nav_footer {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
+
+}
+.header_menu .link_nav::after,
+.footer_menu .link_nav_footer::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #2B7FFF; /* блакитна полоска */
+    transition: width 0.3s ease;
+}
+
+.header_menu .link_nav:hover::after,
+.footer_menu .link_nav_footer:hover::after {
+    width: 100%;
+}
+
+.header_menu .link_nav.active::after,
+.footer_menu .link_nav_footer.active::after {
+    width: 100%;
+}
+
+
 /* Бургер-меню */
 .burger {
     display: none;

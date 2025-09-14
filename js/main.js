@@ -1,22 +1,28 @@
 // ==================== BURGER MENU ====================
 const burger = document.querySelector('.burger');
 const headerMenu = document.querySelector('.header_menu');
-const menuBackdrop = document.createElement('div');
-menuBackdrop.classList.add('menu_backdrop');
-document.body.appendChild(menuBackdrop);
+const menuLinks = document.querySelectorAll('.header_menu .link_nav');
 
+// Відкриття/закриття меню по кліку на бургер
 burger.addEventListener('click', () => {
     burger.classList.toggle('active');
     headerMenu.classList.toggle('active');
-    menuBackdrop.classList.toggle('active');
 });
 
-// Закрытие меню при клике на фон
-menuBackdrop.addEventListener('click', () => {
-    burger.classList.remove('active');
-    headerMenu.classList.remove('active');
-    menuBackdrop.classList.remove('active');
+// Додаємо підсвічування активного пункту при кліку
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        // знімаємо підсвічку з усіх
+        menuLinks.forEach(l => l.classList.remove('active'));
+        // підсвічуємо клікнутий
+        link.classList.add('active');
+
+        // закриваємо меню після кліку (для адаптиву)
+        burger.classList.remove('active');
+        headerMenu.classList.remove('active');
+    });
 });
+
 
 // ==================== MODAL ====================
 const modal = document.getElementById('call-modal');
