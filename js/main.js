@@ -1,28 +1,22 @@
 // ==================== BURGER MENU ====================
 const burger = document.querySelector('.burger');
 const headerMenu = document.querySelector('.header_menu');
-const menuLinks = document.querySelectorAll('.header_menu .link_nav');
+const menuBackdrop = document.createElement('div');
+menuBackdrop.classList.add('menu_backdrop');
+document.body.appendChild(menuBackdrop);
 
-// Відкриття/закриття меню по кліку на бургер
 burger.addEventListener('click', () => {
     burger.classList.toggle('active');
     headerMenu.classList.toggle('active');
+    menuBackdrop.classList.toggle('active');
 });
 
-// Додаємо підсвічування активного пункту при кліку
-menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-        // знімаємо підсвічку з усіх
-        menuLinks.forEach(l => l.classList.remove('active'));
-        // підсвічуємо клікнутий
-        link.classList.add('active');
-
-        // закриваємо меню після кліку (для адаптиву)
-        burger.classList.remove('active');
-        headerMenu.classList.remove('active');
-    });
+// Закрытие меню при клике на фон
+menuBackdrop.addEventListener('click', () => {
+    burger.classList.remove('active');
+    headerMenu.classList.remove('active');
+    menuBackdrop.classList.remove('active');
 });
-
 
 // ==================== MODAL ====================
 const modal = document.getElementById('call-modal');
@@ -64,10 +58,10 @@ let currentIndex = 0;
 track.append(...articles.map(article => article.cloneNode(true)));
 track.prepend(...articles.map(article => article.cloneNode(true)));
 
-articles = Array.from(track.children); // обновляем список слайдов
+articles = Array.from(track.children); 
 
-const articleWidth = articles[0].offsetWidth + 16; // учитываем margin (16px)
-track.style.transform = `translateX(${-articleWidth * articles.length / 3}px)`; // начинаем с первого настоящего слайда
+const articleWidth = articles[0].offsetWidth + 16; 
+track.style.transform = `translateX(${-articleWidth * articles.length / 3}px)`; 
 
 // Обновление активной точки
 function updateDots(index) {
@@ -138,7 +132,6 @@ const successMessage = document.getElementById('successMessage');
 
 form.addEventListener('submit', function(e) {
     e.preventDefault();
-    // Здесь можно добавить AJAX или fetch для отправки формы
     successMessage.classList.add('show');
     setTimeout(() => successMessage.classList.remove('show'), 3000);
     form.reset();

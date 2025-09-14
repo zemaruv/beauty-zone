@@ -41,33 +41,30 @@
             </div>
         </header>
         <div class="container">
-  <div class="top_content">
-    <p class="first_header_parag">Косметологічна клініка</p>
-    <h1>Beauty <br>Zone</h1>
-    <button type="button" class="button_top modal_btn_open" id="call-btn">Замовити дзвінок</button>
-    <p class="second_header_parag">Запишись та отримай безкоштовну <br> консультацію нашого косметолога</p>
-  </div>
+            <div class="top_content">
+                <p class="first_header_parag">Косметологічна клініка</p>
+                <h1>Beauty <br>Zone</h1>
+                <button type="button" class="button_top modal_btn_open" id="call-btn">Замовити дзвінок</button>
+                <p class="second_header_parag">Запишись та отримай безкоштовну <br> консультацію нашого косметолога</p>
+            </div>
+        </div>
 </div>
-
 <!-- Модальное окно -->
 <div class="backdrop is-hidden" id="call-modal">
   <div class="modal">
     <form id="contactForm" class="form_contacts">
         <button id="modal-close" class="modal-close">&times;</button>
         <h2 class="title_modal">Замовити дзвінок</h2>
-      <p>Залиште ваші дані, і ми зателефонуємо вам</p>
-      <input type="text" name="name" autocomplete="name"  placeholder="Ваше ім’я" class="form_input_modal" 
-             pattern="^[A-Za-zА-Яа-яЇїІіЄєҐґ\s]+$" title="Тільки букви" required>
-      <input type="tel" autocomplete="tel"  name="phone" placeholder="Ваш телефон" class="form_input_modal" 
-             pattern="^[0-9]+$" title="Тільки цифри" required>
-      <button type="submit" class="button_form_contacts">Відправити</button>
+        <p>Залиште ваші дані, і ми зателефонуємо вам</p>
+        <input type="text" name="name" autocomplete="name"  placeholder="Ваше ім’я" class="form_input_modal" 
+                pattern="^[A-Za-zА-Яа-яЇїІіЄєҐґ\s]+$" title="Тільки букви" required>
+        <input type="tel" autocomplete="tel"  name="phone" placeholder="Ваш телефон" class="form_input_modal" 
+                pattern="^[0-9]+$" title="Тільки цифри" required>
+        <button type="submit" class="button_form_contacts">Відправити</button>
     </form>
   </div>
 </div>
-
-
-
-    </div>
+</div>
     <main>
         <!-- Секция Про нас -->
         <div class="container">
@@ -150,14 +147,14 @@
             </div>
         </section>
     </div>
-</div>
+    </div>
 <!-- Секция Контакты -->
     <div class="container">
         <section class="section_contacts" id="section4">
                     <h2>Як нас <span>знайти</span></h2>
                     <div class="section_contacts_items">
                     <iframe class="map" src="https://www.google.com/maps/embed?..." allowfullscreen="" loading="lazy"></iframe>
-                <div class="form_contacts">
+            <div class="form_contacts">
                 <p class="parag_form_contacts">Запишіться <span>безкоштовно</span> та отримайте подарунок</p>
                 <form id="contactForm">
                     <input class="form_input" type="text" id="name" autocomplete="name"  placeholder="Ваше ім'я та прізвище" required>
@@ -167,14 +164,12 @@
                 </form>
                 <div id="successMessage" class="success_message">Дані успішно надіслані!</div>
             </div>
-
             </div>
         </section>
     </div>
 </main>
-    <footer class="footer">
+<footer class="footer">
     <div class="container footer_inner">
-        <!-- Логотип -->
         <a class="footer_logo" href="#"><img src="images/logo.svg" alt="Логотип Beauty Zone"></a>
         <!-- Меню футера колонкой -->
         <ul class="footer_menu">
@@ -207,7 +202,7 @@
     <!-- Фото медицины вне блока с контентом -->
     <img class="medicine_photo_footer" src="images/medicine_photo.svg" alt="Товари для краси">
 </footer>
-    <button class="scroll_to_top" id="scrollToTop"></button>
+<button class="scroll_to_top" id="scrollToTop"></button>
     <script src="./js/main.js"></script>
 </body>
 </html>
